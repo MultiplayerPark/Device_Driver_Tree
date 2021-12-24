@@ -137,11 +137,11 @@ int __init gpio_int_init(void)
 	if( gpioint_major )
 	{
 		gpioint_dev = MKDEV(gpioint_major,gpioint_minor);
-		error = register_chrdev_region(gpioint_dev, 1, "and_gpio_int");
+		error = register_chrdev_region(gpioint_dev, 1, "gpio_int");
 	}
 	else
 	{
-		error = alloc_chrdev_region(&gpioint_dev, gpioint_minor, 1, "and_gpio_int");
+		error = alloc_chrdev_region(&gpioint_dev, gpioint_minor, 1, "gpio_int");
 		gpioint_major = MAJOR(gpioint_dev);
 	}
 
@@ -162,7 +162,7 @@ int __init gpio_int_init(void)
 		return error;
 	}
 
-	if( gpio_request(portPin, "and_gpio_int") == -EBUSY )
+	if( gpio_request(portPin, "gpio_int") == -EBUSY )
 		printk(KERN_WARNING "gpio_int : gpio line is busy\n");
 
 	gpio_direction_input(portPin);
@@ -171,7 +171,7 @@ int __init gpio_int_init(void)
 	//irq_set_irq_type(irq_number, IRQ_TYPE_EDGE_BOTH);
 	printk(KERN_INFO "gpio_int : irq_number => %d\n",irq_number);
 
-	if( request_irq(irq_number, gpioint_handler, IRQF_SHARED, "and_gpio_int", &gpioint_dev) != 0 )
+	if( request_irq(irq_number, gpioint_handler, IRQF_SHARED, "gpio_int", &gpioint_dev) != 0 )
 	{
 		printk(KERN_WARNING "gpio_int : request_irq fail\n");
 		return -ENOENT;
@@ -180,8 +180,8 @@ int __init gpio_int_init(void)
 	printk(KERN_INFO "request_irq ok\n");
 
 	printk(KERN_INFO "gpio_int : module insert done");
-	printk(KERN_INFO "mknod /dev/and_gpio_int c %d %d\n",gpioint_major, gpioint_minor);
-	printk(KERN_INFO "chmod 666 /dev/and_gpio_int\n");
+	printk(KERN_INFO "mknod /dev/gpio_int c %d %d\n",gpioint_major, gpioint_minor);
+	printk(KERN_INFO "chmod 666 /dev/gpio_int\n");
 
 	return 0;
 }
