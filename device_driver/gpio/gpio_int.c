@@ -1,3 +1,22 @@
+/*
+ * File Name : gpio_int.c
+ *
+ * Copyright 2021 by pwk
+ *
+ * Developer : PWK (pwk10000@naver.com)
+ *
+ * Classify : Device-Driver
+ *
+ * Version : 1.00
+ *
+ * Created Date : 2021-12-24
+ *
+ * File Description : gpio interrupt control Device-Driver(Linux)
+ *
+ * Release List
+ * 2021-12-24 : 1st Release
+ */
+
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h>

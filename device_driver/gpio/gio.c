@@ -1,13 +1,20 @@
 /*
- * linux/drivers/video/backlight/pwm_bl.c
+ * File Name : gio.c
  *
- * simple PWM based backlight control, board code has to setup
- * 1) pin configuration so PWM waveforms can output
- * 2) platform_data being correctly configured
+ * Copyright 2021 by pwk
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
+ * Developer : PWK (pwk10000@naver.com)
+ *
+ * Classify : Device-Driver
+ *
+ * Version : 1.00
+ *
+ * Created Date : 2021-12-24
+ *
+ * File Description : GPIO Control Driver(Linux-3.0.xx)
+ *
+ * Release List
+ * 2021-12-24 : 1st Release
  */
 
 #include <linux/module.h>
