@@ -1,3 +1,23 @@
+/*
+ * File Name : tl16c554_imx6.c
+ *
+ * Copyright 2021 by pwk
+ *
+ * Developer : PWK (pwk10000@naver.com)
+ *
+ * Classify : Device-Driver
+ *
+ * Version : 1.00
+ *
+ * Created Date : 2021-12-24
+ *
+ * File Description : External UART Control Driver(Linux-3.0.xx)
+ *
+ * Release List
+ * 2021-12-24 : 1st Release
+ */
+
+
 /****************************************************************
 * tl16c554 driver. for imx6(linux-3.0.26)
 * internal uart...
@@ -210,7 +230,7 @@ enum{
 
 // LSR reg field
 #define LSR_THRE		0x20		// Transmitter holding register empty
-#define LSR_TEMT		0x40		// Transmitter holding register(THR)¿Í Transmitter Shift register(TSR)°¡ µ¿½Ã¿¡ ºñ¾îÀÖÀ» °æ¿ì ¼¼Æ®
+#define LSR_TEMT		0x40		// Transmitter holding register(THR)ì™€ Transmitter Shift register(TSR)ê°€ ë™ì‹œì— ë¹„ì–´ìˆì„ ê²½ìš° ì„¸íŠ¸
 
 // baudrate
 #define TL16C554_XTAL	3686400	// XTAL 3.6864MHz
@@ -779,7 +799,7 @@ static int ReadData(char* dst, ubuf_t* src, int len, char* temp)
 {
 	int err = 0;
 
-	Ubuf_Rx_Pullout(src, temp, &len);          // »óÅÂ°ª & ±æÀÌ°ª return.
+	Ubuf_Rx_Pullout(src, temp, &len);          // ìƒíƒœê°’ & ê¸¸ì´ê°’ return.
 
 	if( len != 0 )
 		err = copy_to_user((void *)dst, (void *)temp, len);
@@ -1077,9 +1097,9 @@ ssize_t TL16C554L_Write(struct file* a_pFile, const char* a_pBuf, size_t a_lengt
 	return WriteData(a_pBuf,a_length,CH_L_OFFSET,txb_usr,exUartBaud[EX_UART11],exUartType[EX_UART11]);
 }
 
-//--------------------------------------------------------------------- private ÇÔ¼ö.
-//--------------------------------------------------------------------- private ÇÔ¼ö.
-//--------------------------------------------------------------------- private ÇÔ¼ö.
+//--------------------------------------------------------------------- private í•¨ìˆ˜.
+//--------------------------------------------------------------------- private í•¨ìˆ˜.
+//--------------------------------------------------------------------- private í•¨ìˆ˜.
 
 /*********************************************************************
 **********************************************************************/
@@ -1759,7 +1779,7 @@ void __exit TL16C554_Cleanup (void)
 		printk("----------------------------------------------\n");
 	}
 
-	// interrupt  ÇØÁ¦.
+	// interrupt  í•´ì œ.
 	free_irq(EINTCS1A,&TL16C554_fops);	// A
 	free_irq(EINTCS1B,&TL16C554_fops);	// B
 	free_irq(EINTCS1C,&TL16C554_fops);		// C
